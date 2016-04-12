@@ -11,10 +11,11 @@ RSpec.describe "GET /api/v1/items" do
 
   it "returns a list of all items" do
     # id,name,description,unit_price,merchant_id,created_at,updated_at
-
-    item1 = create(:item, first_name: "Brennan", last_name: "Doe")
-    item2 = create(:item, first_name: "John", last_name: "Doe")
-    item3 = create(:item, first_name: "Doe", last_name: "Doe")
+    merchant1 = create(:merchant, name: "Brennan")
+    merchant2 = create(:merchant, name: "John")
+    item1 = create(:item, merchant_id: merchant1.id)
+    item2 = create(:item, merchant_id: merchant2.id)
+    item3 = create(:item, merchant_id: merchant1.id)
 
     get "/api/v1/items"
 
@@ -22,95 +23,96 @@ RSpec.describe "GET /api/v1/items" do
 
     expect(parsed_response[0]).to eq({
       "id"         => item1.id,
-      "first_name" => item1.first_name,
-      "last_name" => item1.last_name,
+      "name" => item1.name,
+      "description" => item1.description,
+      "unit_price" => item1.unit_price,
+      "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
     })
 
-    expect(parsed_response[1]["first_name"]).to eq(item2.first_name)
-    expect(parsed_response[2]["first_name"]).to eq(item3.first_name)
+    expect(parsed_response[1]["name"]).to eq(item2.name)
+    expect(parsed_response[2]["name"]).to eq(item3.name)
   end
 
   it "returns just one item by id" do
-    item1 = create(:item, first_name: "Brennan", last_name: "Doe")
-    item2 = create(:item, first_name: "John", last_name: "Doe")
+    merchant1 = create(:merchant, name: "Brennan")
+    merchant2 = create(:merchant, name: "John")
+    item1 = create(:item, merchant_id: merchant1.id)
+    item2 = create(:item, merchant_id: merchant2.id)
+    item3 = create(:item, merchant_id: merchant1.id)
 
     get "/api/v1/items/#{item1.id}"
 
     expect(parsed_response).to eq({
       "id"         => item1.id,
-      "first_name" => item1.first_name,
-      "last_name" => item1.last_name,
+      "name" => item1.name,
+      "description" => item1.description,
+      "unit_price" => item1.unit_price,
+      "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
     })
-
-    expect(parsed_response).to_not include(item2.first_name)
   end
 
   it "returns just one item by any criteria" do
-    item1 = create(:item, first_name: "Brennan", last_name: "Doe")
-    item2 = create(:item, first_name: "John", last_name: "Doe")
+    merchant1 = create(:merchant, name: "Brennan")
+    merchant2 = create(:merchant, name: "John")
+    item1 = create(:item, name: "This Item", merchant_id: merchant1.id)
+    item2 = create(:item, name: "That Item", merchant_id: merchant2.id)
+    item3 = create(:item, name: "Other Item", merchant_id: merchant1.id)
 
     get "/api/v1/items/find?id=#{item1.id}"
 
     expect(parsed_response).to eq({
       "id"         => item1.id,
-      "first_name" => item1.first_name,
-      "last_name" => item1.last_name,
+      "name" => item1.name,
+      "description" => item1.description,
+      "unit_price" => item1.unit_price,
+      "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
     })
 
-    get "/api/v1/items/find?first_name=#{item2.first_name}"
+    get "/api/v1/items/find?name=#{item2.name}"
 
     expect(parsed_response).to eq({
       "id"         => item2.id,
-      "first_name" => item2.first_name,
-      "last_name" => item2.last_name,
+      "name" => item2.name,
+      "description" => item2.description,
+      "unit_price" => item2.unit_price,
+      "merchant_id" => item2.merchant_id,
       "created_at" => format_date(item2.created_at),
       "updated_at" => format_date(item2.updated_at)
     })
-
-### HOW TO HANDLE MULTIPLE RESULTS IN FIND METHOD ###
-    # get "/api/v1/items/find?last_name=#{item2.last_name}"
-    #
-    # expect(parsed_response).to eq({
-    #   "id"         => item2.id,
-    #   "first_name" => item2.first_name,
-    #   "last_name" => item2.last_name,
-    #   "created_at" => format_date(item2.created_at),
-    #   "updated_at" => format_date(item2.updated_at)
-    # })
   end
 
   it "returns all items by any criteria" do
-    item1 = create(:item, first_name: "Brennan", last_name: "Doe")
-    item2 = create(:item, first_name: "John", last_name: "Doe")
-    item3 = create(:item, first_name: "Doe", last_name: "Deer")
+    merchant1 = create(:merchant, name: "Brennan")
+    merchant2 = create(:merchant, name: "John")
+    item1 = create(:item, name: "This Item", merchant_id: merchant1.id)
+    item2 = create(:item, name: "That Item", merchant_id: merchant2.id)
+    item3 = create(:item, name: "Other Item", merchant_id: merchant1.id)
 
     get "/api/v1/items/find_all?id=#{item1.id}"
 
     expect(parsed_response.first).to eq({
       "id"         => item1.id,
-      "first_name" => item1.first_name,
-      "last_name" => item1.last_name,
+      "name" => item1.name,
+      "description" => item1.description,
+      "unit_price" => item1.unit_price,
+      "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
     })
 
-    get "/api/v1/items/find_all?last_name=#{item1.last_name}"
+    get "/api/v1/items/find_all?merchant_id=#{item1.merchant_id}"
 
     expect(parsed_response.count).to eq(2)
 
     expect(parsed_response.first["id"]).to eq(item1.id)
-    expect(parsed_response.first["first_name"]).to eq(item1.first_name)
-    expect(parsed_response.last["id"]).to eq(item2.id)
-    expect(parsed_response.last["first_name"]).to eq(item2.first_name)
-    expect(parsed_response).to include(JSON.parse(item2.to_json))
-    expect(parsed_response).to_not include(JSON.parse(item3.to_json))
+    expect(parsed_response.first["merchant_id"]).to eq(item1.merchant_id)
+    expect(parsed_response.last["id"]).to eq(item3.id)
+    expect(parsed_response.last["merchant_id"]).to eq(item3.merchant_id)
   end
-end
-
 end
