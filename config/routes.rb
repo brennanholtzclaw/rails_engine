@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get '/customers/find', to: 'customers#find'
       get '/customers/find_all', to: 'customers#find_all'
       resources :customers, except: [:new, :edit]
+
+      
     end
   end
 end
