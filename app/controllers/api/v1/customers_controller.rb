@@ -23,6 +23,6 @@ class Api::V1::CustomersController < ApiController
 
 private
   def customer_params
-    params.permit(:first_name, :last_name, :created_at, :updated_at)
+    params.permit(:id, :first_name, :last_name, :created_at, :updated_at)
   end
 end
