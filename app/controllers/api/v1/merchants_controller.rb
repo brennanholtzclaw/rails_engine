@@ -10,18 +10,18 @@ class Api::V1::MerchantsController < ApiController
   end
 
   def find
-    # @merchant = Merchant.find_by
+    respond_with Merchant.find_by(params.keys[0] => params.values[0])
   end
 
   def find_all
-    # @merchants = Merchant.where
+    respond_with Merchant.where(params.keys[0] => params.values[0])
   end
 
-  def create(merchant_params)
-  end
-
-  def update(merchant_params)
-  end
+  # def create(merchant_params)
+  # end
+  #
+  # def update(merchant_params)
+  # end
 
 # private
   # def merchant_params
