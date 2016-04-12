@@ -16,4 +16,8 @@ class Api::V1::TransactionsController < ApiController
   def find_all
     respond_with Transaction.where(params.keys[0] => params.values[0])
   end
+
+  def random
+    respond_with Transaction.all.order("RANDOM()").first
+  end
 end

@@ -16,4 +16,8 @@ class Api::V1::ItemsController < ApiController
   def find_all
     respond_with Item.where(params.keys[0] => params.values[0])
   end
+
+  def random
+    respond_with Item.all.order("RANDOM()").first
+  end
 end

@@ -17,12 +17,9 @@ class Api::V1::MerchantsController < ApiController
     respond_with Merchant.where(params.keys[0] => params.values[0])
   end
 
-  # def create(merchant_params)
-  # end
-  #
-  # def update(merchant_params)
-  # end
-
+  def random
+    respond_with Merchant.all.order("RANDOM()").first
+  end
 # private
   # def merchant_params
   #   params.require(:merchant).permit(:name)

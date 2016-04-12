@@ -17,4 +17,7 @@ class Api::V1::InvoiceItemsController < ApiController
     respond_with InvoiceItem.where(params.keys[0] => params.values[0])
   end
 
+  def random
+    respond_with InvoiceItem.all.order("RANDOM()").first
+  end
 end
