@@ -1,4 +1,3 @@
-# id,item_id,invoice_id,quantity,unit_price,created_at,updated_at
 require 'rails_helper'
 
 RSpec.describe "GET /api/v1/invoice_items" do
