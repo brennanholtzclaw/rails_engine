@@ -1,0 +1,97 @@
+require "rails_helper"
+
+RSpec.describe "GET /api/v1/customers" do
+  def parsed_response
+    JSON.parse(response.body)
+  end
+
+  def format_date(date)
+    date.strftime("%Y-%m-%dT%H:%M:%S.%LZ")
+  end
+
+  it "returns a list of all customers" do
+    # id,first_name,last_name,created_at,updated_at
+    customer1 = create(:customer, first_name: "Brennan", last_name: "Doe")
+    customer2 = create(:customer, first_name: "John", last_name: "Doe")
+    customer3 = create(:customer, first_name: "Doe", last_name: "Doe")
+
+    get "/api/v1/customers"
+
+    expect(parsed_response.count).to eq(3)
+
+    expect(parsed_response[0]).to eq({
+      "id"         => customer1.id,
+      "first_name" => customer1.first_name,
+      "last_name" => customer1.last_name,
+      "created_at" => format_date(customer1.created_at),
+      "updated_at" => format_date(customer1.updated_at)
+    })
+
+    expect(parsed_response[1]["first_name"]).to eq(customer2.name)
+    expect(parsed_response[2]["first_name"]).to eq(customer3.name)
+  end
+#
+#   it "returns just one customer by id" do
+#     customer1 = create(:customer, name: "Brennan")
+#     customer2 = create(:customer, name: "John")
+#
+#     get "/api/v1/customers/#{customer1.id}"
+#
+#     expect(parsed_response).to eq({
+#       "id"         => customer1.id,
+#       "first_name" => customer1.first_name,
+#       "created_at" => format_date(customer1.created_at),
+#       "updated_at" => format_date(customer1.updated_at)
+#     })
+#
+#     expect(parsed_response).to_not include(customer2.name)
+#   end
+#
+#   it "returns just one customer by any criteria" do
+#     customer1 = create(:customer, name: "Brennan")
+#     customer2 = create(:customer, name: "John")
+#
+#
+#     get "/api/v1/customers/find?id=#{customer1.id}"
+#
+#     expect(parsed_response).to eq({
+#       "id"         => customer1.id,
+#       "first_name" => customer1.first_name,
+#       "created_at" => format_date(customer1.created_at),
+#       "updated_at" => format_date(customer1.updated_at)
+#       })
+#
+#     get "/api/v1/customers/find?name=#{customer2.name}"
+#
+#     expect(parsed_response).to eq({
+#       "id"         => customer2.id,
+#       "first_name" => customer2.first_name,
+#       "created_at" => format_date(customer2.created_at),
+#       "updated_at" => format_date(customer2.updated_at)
+#       })
+#   end
+#
+#   it "returns all customers by any criteria" do
+#     customer1 = create(:customer, name: "Brennan")
+#     customer2 = create(:customer, name: "Brennan")
+#     customer3 = create(:customer, name: "John")
+#
+#     get "/api/v1/customers/find_all?id=#{customer1.id}"
+#
+#     expect(parsed_response.first).to eq({
+#       "id"         => customer1.id,
+#       "first_name" => customer1.first_name,
+#       "created_at" => format_date(customer1.created_at),
+#       "updated_at" => format_date(customer1.updated_at)
+#       })
+#
+#     get "/api/v1/customers/find_all?name=#{customer2.name}"
+#
+#     expect(parsed_response.count).to eq(2)
+#
+#     expect(parsed_response.first["id"]).to eq(customer1.id)
+#     expect(parsed_response.first["first_name"]).to eq(customer1.name)
+#     expect(parsed_response.last["id"]).to eq(customer2.id)
+#     expect(parsed_response.last["first_name"]).to eq(customer2.name)
+#   end
+end
