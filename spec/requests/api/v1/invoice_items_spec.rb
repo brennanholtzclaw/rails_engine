@@ -33,7 +33,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id" => invoice_item1.item_id,
       "invoice_id" => invoice_item1.invoice_id,
       "quantity" => invoice_item1.quantity,
-      "unit_price" => invoice_item1.unit_price,
+      "unit_price" => invoice_item1.unit_price.to_s,
       "created_at" => format_date(invoice_item1.created_at),
       "updated_at" => format_date(invoice_item1.updated_at)
     })
@@ -64,7 +64,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id"    => invoice_item1.item_id,
       "invoice_id" => invoice_item1.invoice_id,
       "quantity"   => invoice_item1.quantity,
-      "unit_price" => invoice_item1.unit_price,
+      "unit_price" => invoice_item1.unit_price.to_s,
       "created_at" => format_date(invoice_item1.created_at),
       "updated_at" => format_date(invoice_item1.updated_at)
     })
@@ -94,7 +94,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id"    => invoice_item1.item_id,
       "invoice_id" => invoice_item1.invoice_id,
       "quantity"   => invoice_item1.quantity,
-      "unit_price" => invoice_item1.unit_price,
+      "unit_price" => invoice_item1.unit_price.to_s,
       "created_at" => format_date(invoice_item1.created_at),
       "updated_at" => format_date(invoice_item1.updated_at)
     })
@@ -106,7 +106,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id"    => invoice_item2.item_id,
       "invoice_id" => invoice_item2.invoice_id,
       "quantity"   => invoice_item2.quantity,
-      "unit_price" => invoice_item2.unit_price,
+      "unit_price" => invoice_item2.unit_price.to_s,
       "created_at" => format_date(invoice_item2.created_at),
       "updated_at" => format_date(invoice_item2.updated_at)
     })
@@ -118,7 +118,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id"    => invoice_item3.item_id,
       "invoice_id" => invoice_item3.invoice_id,
       "quantity"   => invoice_item3.quantity,
-      "unit_price" => invoice_item3.unit_price,
+      "unit_price" => invoice_item3.unit_price.to_s,
       "created_at" => format_date(invoice_item3.created_at),
       "updated_at" => format_date(invoice_item3.updated_at)
     })
@@ -146,7 +146,7 @@ RSpec.describe "GET /api/v1/invoice_items" do
       "item_id"    => invoice_item1.item_id,
       "invoice_id" => invoice_item1.invoice_id,
       "quantity"   => invoice_item1.quantity,
-      "unit_price" => invoice_item1.unit_price,
+      "unit_price" => invoice_item1.unit_price.to_s,
       "created_at" => format_date(invoice_item1.created_at),
       "updated_at" => format_date(invoice_item1.updated_at)
     })

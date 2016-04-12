@@ -9,7 +9,7 @@ FactoryGirl.define do
     item nil
     invoice nil
     quantity 10
-    unit_price 1000
+    unit_price BigDecimal.new("10000")
   end
 
   sequence :item_name, %w(1 2 3 4).cycle do |num|
