@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       get '/customers/find_all', to: 'customers#find_all'
       resources :customers, except: [:new, :edit]
 
-      
+      get '/invoices/find', to: 'invoices#find'
+      get '/invoices/find_all', to: 'invoices#find_all'
+      resources :invoices, except: [:new, :edit]
     end
   end
 end
