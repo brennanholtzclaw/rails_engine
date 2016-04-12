@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :invoice_item do
+    item nil
+    invoice nil
+    quantity 10
+    unit_price 1000
+  end
 
   sequence :item_name, %w(1 2 3 4).cycle do |num|
     "Item #{num}"
