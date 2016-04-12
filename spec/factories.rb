@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :item do
+    name "MyString"
+    description "MyString"
+    unit_price 1
+    merchant nil
+  end
   factory :invoice do
     customer nil
     merchant nil

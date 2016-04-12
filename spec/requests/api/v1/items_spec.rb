@@ -10,7 +10,8 @@ RSpec.describe "GET /api/v1/items" do
   end
 
   it "returns a list of all items" do
-    # id,first_name,last_name,created_at,updated_at
+    # id,name,description,unit_price,merchant_id,created_at,updated_at
+
     item1 = create(:item, first_name: "Brennan", last_name: "Doe")
     item2 = create(:item, first_name: "John", last_name: "Doe")
     item3 = create(:item, first_name: "Doe", last_name: "Doe")
