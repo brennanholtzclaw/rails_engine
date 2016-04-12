@@ -36,7 +36,6 @@ RSpec.describe "GET /api/v1/transactions" do
       "id"         => transaction1.id,
       "invoice_id" => transaction1.invoice_id,
       "credit_card_number" => transaction1.credit_card_number,
-      "credit_card_expiration_date" => transaction1.credit_card_expiration_date,
       "result" => transaction1.result,
       "created_at" => format_date(transaction1.created_at),
       "updated_at" => format_date(transaction1.updated_at)
@@ -70,7 +69,6 @@ RSpec.describe "GET /api/v1/transactions" do
       "id"         => transaction1.id,
       "invoice_id" => transaction1.invoice_id,
       "credit_card_number" => transaction1.credit_card_number,
-      "credit_card_expiration_date" => transaction1.credit_card_expiration_date,
       "result" => transaction1.result,
       "created_at" => format_date(transaction1.created_at),
       "updated_at" => format_date(transaction1.updated_at)
@@ -103,7 +101,6 @@ RSpec.describe "GET /api/v1/transactions" do
       "id"         => transaction1.id,
       "invoice_id" => transaction1.invoice_id,
       "credit_card_number" => transaction1.credit_card_number,
-      "credit_card_expiration_date" => transaction1.credit_card_expiration_date,
       "result" => transaction1.result,
       "created_at" => format_date(transaction1.created_at),
       "updated_at" => format_date(transaction1.updated_at)
@@ -115,7 +112,6 @@ RSpec.describe "GET /api/v1/transactions" do
       "id"         => transaction2.id,
       "invoice_id" => transaction2.invoice_id,
       "credit_card_number" => transaction2.credit_card_number,
-      "credit_card_expiration_date" => transaction2.credit_card_expiration_date,
       "result" => transaction2.result,
       "created_at" => format_date(transaction2.created_at),
       "updated_at" => format_date(transaction2.updated_at)
@@ -146,7 +142,6 @@ RSpec.describe "GET /api/v1/transactions" do
       "id"         => transaction1.id,
       "invoice_id" => transaction1.invoice_id,
       "credit_card_number" => transaction1.credit_card_number,
-      "credit_card_expiration_date" => transaction1.credit_card_expiration_date,
       "result" => transaction1.result,
       "created_at" => format_date(transaction1.created_at),
       "updated_at" => format_date(transaction1.updated_at)
