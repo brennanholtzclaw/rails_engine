@@ -25,7 +25,7 @@ RSpec.describe "GET /api/v1/items" do
       "id"         => item1.id,
       "name" => item1.name,
       "description" => item1.description,
-      "unit_price" => item1.unit_price,
+      "unit_price" => item1.unit_price.to_s,
       "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
@@ -48,7 +48,7 @@ RSpec.describe "GET /api/v1/items" do
       "id"         => item1.id,
       "name" => item1.name,
       "description" => item1.description,
-      "unit_price" => item1.unit_price,
+      "unit_price" => item1.unit_price.to_s,
       "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
@@ -68,7 +68,7 @@ RSpec.describe "GET /api/v1/items" do
       "id"         => item1.id,
       "name" => item1.name,
       "description" => item1.description,
-      "unit_price" => item1.unit_price,
+      "unit_price" => item1.unit_price.to_s,
       "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
@@ -80,7 +80,7 @@ RSpec.describe "GET /api/v1/items" do
       "id"         => item2.id,
       "name" => item2.name,
       "description" => item2.description,
-      "unit_price" => item2.unit_price,
+      "unit_price" => item2.unit_price.to_s,
       "merchant_id" => item2.merchant_id,
       "created_at" => format_date(item2.created_at),
       "updated_at" => format_date(item2.updated_at)
@@ -100,7 +100,7 @@ RSpec.describe "GET /api/v1/items" do
       "id"         => item1.id,
       "name" => item1.name,
       "description" => item1.description,
-      "unit_price" => item1.unit_price,
+      "unit_price" => item1.unit_price.to_s,
       "merchant_id" => item1.merchant_id,
       "created_at" => format_date(item1.created_at),
       "updated_at" => format_date(item1.updated_at)
