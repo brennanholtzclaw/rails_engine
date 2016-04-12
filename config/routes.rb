@@ -20,6 +20,10 @@ Rails.application.routes.draw do
       get '/invoice_items/find', to: 'invoice_items#find'
       get '/invoice_items/find_all', to: 'invoice_items#find_all'
       resources :invoice_items, except: [:new, :edit]
+
+      get '/transactions/find', to: 'transactions#find'
+      get '/transactions/find_all', to: 'transactions#find_all'
+      resources :transactions, except: [:new, :edit]
     end
   end
 end
