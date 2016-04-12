@@ -20,8 +20,16 @@ class Api::V1::MerchantsController < ApiController
   def random
     respond_with Merchant.all.order("RANDOM()").first
   end
-# private
-  # def merchant_params
-  #   params.require(:merchant).permit(:name)
+  # def find
+  #   respond_with Merchant.find_by(merchant_params)
   # end
+  #
+  # def find_all
+  #   respond_with Merchant.find_by(merchant_params)
+  # end
+  # private
+  #   def merchant_params
+  #     params.permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #     params.require(:merchant).permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #   end
 end

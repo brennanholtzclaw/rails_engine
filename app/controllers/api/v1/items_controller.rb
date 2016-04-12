@@ -20,4 +20,18 @@ class Api::V1::ItemsController < ApiController
   def random
     respond_with Item.all.order("RANDOM()").first
   end
+
+  # def find
+  #   respond_with Item.find_by(item_params)
+  # end
+  #
+  # def find_all
+  #   respond_with Item.find_by(item_params)
+  # end
+  #
+  # private
+  #   def item_params
+  #     # params.permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #     params.require(:item).permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #   end
 end

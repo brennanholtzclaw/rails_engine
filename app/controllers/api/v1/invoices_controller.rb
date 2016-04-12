@@ -20,4 +20,18 @@ class Api::V1::InvoicesController < ApiController
   def random
     respond_with Invoice.all.order("RANDOM()").first
   end
+
+  # def find
+  #   respond_with Invoice.find_by(invoice_params)
+  # end
+  #
+  # def find_all
+  #   respond_with Invoice.find_by(invoice_params)
+  # end
+  # private
+  #   def invoice_params
+  #     params.permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #     params.require(:invoice).permit(:id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at)
+  #   end
+
 end

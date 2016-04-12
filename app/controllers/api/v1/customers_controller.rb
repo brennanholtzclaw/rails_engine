@@ -20,4 +20,18 @@ class Api::V1::CustomersController < ApiController
   def random
     respond_with Customer.all.order("RANDOM()").first
   end
+
+  # def find
+  #   respond_with Customer.find_by(customer_params)
+  # end
+  #
+  # def find_all
+  #   respond_with Customer.find_by(customer_params)
+  # end
+  #
+  # private
+  #   def customer_params
+  #     params.permit(:first_name, :last_name, :created_at, :updated_at)
+  #     # params.require(:customer).permit(:first_name, :last_name, :created_at, :updated_at)
+  #   end
 end
