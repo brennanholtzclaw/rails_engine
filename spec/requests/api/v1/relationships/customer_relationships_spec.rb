@@ -27,18 +27,22 @@ RSpec.describe "GET /api/v1/customers/ relationships" do
     expect(parsed_response).to_not include(JSON.parse(invoice3.to_json))
   end
 
-  # it "returns a list of all customer transactions" do
-  #   # GET /api/v1/customers/:id/transactions returns a collection of associated transactions
-  #   merchant1 = create(:merchant, name: "Brennan")
-  #   invoice1 = create(:invoice)
-  #   invoice2 = create(:invoice)
-  #   merchant1.invoices << invoice1
-  #   merchant1.invoices << invoice2
-  #
-  #   get "/api/v1/customers/#{customer.id}/transactions"
-  #
-  #   expect(parsed_response.count).to eq(2)
-  #   expect(parsed_response[0]).to eq(JSON.parse(invoice1.to_json))
-  #   expect(parsed_response[1]["created_at"]).to eq(format_date(invoice2.created_at))
-  # end
+  it "returns a list of all customer transactions" do
+    # GET /api/v1/customers/:id/transactions returns a collection of associated transactions
+    customer = create(:customer)
+    invoice = create(:invoice)
+    invoice.update(customer_id: customer.id)
+    transaction1 = create(:transaction)
+    transaction2 = create(:transaction)
+    transaction3 = create(:transaction)
+    invoice.transactions << transaction1
+    invoice.transactions << transaction2
+
+    get "/api/v1/customers/#{customer.id}/transactions"
+
+    expect(parsed_response.count).to eq(2)
+    expect(parsed_response[0]["id"]).to eq(transaction1.id)
+    expect(parsed_response[1]["id"]).to eq(transaction2.id)
+    expect(parsed_response).to_not include(JSON.parse(transaction3.to_json))
+  end
 end
