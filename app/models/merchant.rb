@@ -7,4 +7,7 @@ class Merchant < ActiveRecord::Base
     return {"revenue" => revenue}
   end
 
+  def self.customers_with_pending_invoices(id)
+    Merchant.find(id).invoices.includes(:customer).joins(:transactions).where("transactions.result = 'failed'").uniq
+  end
 end
