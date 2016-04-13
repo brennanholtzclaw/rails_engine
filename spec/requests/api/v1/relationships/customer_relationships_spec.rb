@@ -22,8 +22,8 @@ RSpec.describe "GET /api/v1/customers/ relationships" do
     get "/api/v1/customers/#{customer.id}/invoices"
 
     expect(parsed_response.count).to eq(2)
-    expect(parsed_response[0]).to eq(JSON.parse(item1.to_json))
-    expect(parsed_response[1]["status"]).to eq(item2.status)
+    expect(parsed_response[0]).to eq(JSON.parse(invoice1.to_json))
+    expect(parsed_response[1]["status"]).to eq(invoice2.status)
     expect(parsed_response).to_not include(JSON.parse(invoice3.to_json))
   end
 
