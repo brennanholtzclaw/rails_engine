@@ -26,17 +26,19 @@ RSpec.describe "GET /api/v1/item relationships" do
 
     expect(parsed_response.count).to eq(2)
     expect(parsed_response[0]).to eq(JSON.parse(invoice_item1.to_json))
-    expect(parsed_response[1]["status"]).to eq(invoice_item2.status)
+    expect(parsed_response[1]["id"]).to eq(invoice_item2.id)
   end
 
-  # it "returns associated item merchant" do
-  #   # GET /api/v1/items/:id/merchant returns the associated merchant
-  #   invoice_item = create(:invoice_item)
-  #   item = create(:item)
-  #   invoice_item.update(item: item)
-  #
-  #   get "/api/v1/invoice_items/#{invoice_item.id}/item"
-  #
-  #   expect(parsed_response).to eq(JSON.parse(item.to_json))
-  # end
+  it "returns associated item merchant" do
+    # GET /api/v1/items/:id/merchant returns the associated merchant
+    item = create(:item)
+    merchant = create(:merchant)
+    merchant.items << item
+
+    get "/api/v1/items/#{item.id}/merchant"
+
+    expect(parsed_response).to eq(JSON.parse(merchant.to_json))
+    # expect(parsed_response[0]).to eq(JSON.parse(invoice_item1.to_json))
+    # expect(parsed_response[1]["id"]).to eq(invoice_item2.id)
+  end
 end
