@@ -69,6 +69,7 @@ RSpec.describe "GET /api/v1/invoices relationships" do
 
     expect(parsed_response).to eq(JSON.parse(customer.to_json))
   end
+
   it "returns a list of all invoice merchants" do
     # GET /api/v1/invoices/:id/merchant returns the associated merchant
     invoice = create(:invoice)
