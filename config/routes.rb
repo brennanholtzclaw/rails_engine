@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'invoices/:id/transactions', to: 'invoice_transactions#index'
       get 'invoices/:id/invoice_items', to: 'invoice_invoice_items_#index'
       get 'invoices/:id/items', to: 'invoice_item_relationships#index'
+      get 'invoices/:id/customer', to: 'invoice_customers#index'
 
       get '/items/find', to: 'items#find'
       get '/items/find_all', to: 'items#find_all'

@@ -8,7 +8,6 @@ RSpec.describe "GET /api/v1/invoices relationships" do
   def format_date(date)
     date.strftime("%Y-%m-%dT%H:%M:%S.%LZ")
   end
-  # GET /api/v1/invoices/:id/merchant returns the associated merchant
   it "returns a list of all invoice transactions" do
     # GET /api/v1/invoices/:id/transactions returns a collection of associated transactions
     invoice = create(:invoice)
@@ -64,12 +63,20 @@ RSpec.describe "GET /api/v1/invoices relationships" do
     # GET /api/v1/invoices/:id/customer returns the associated customer
     invoice = create(:invoice)
     customer = create(:customer)
+    invoice.update(customer: customer)
 
     get "/api/v1/invoices/#{invoice.id}/customer"
 
-    expect(parsed_response.count).to eq(1)
-    expect(parsed_response[0]["id"]).to eq(customer.id)
-    expect(parsed_response[0]["id"]).to_not eq(customer.id)
-    expect(parsed_response[1]["id"]).to eq(customer.id)
+    expect(parsed_response).to eq(JSON.parse(customer.to_json))
+  end
+  it "returns a list of all invoice merchants" do
+    # GET /api/v1/invoices/:id/merchant returns the associated merchant
+    invoice = create(:invoice)
+    merchant = create(:merchant)
+    invoice.update(merchant: merchant)
+
+    get "/api/v1/invoices/#{invoice.id}/merchant"
+
+    expect(parsed_response).to eq(JSON.parse(merchant.to_json))
   end
 end
