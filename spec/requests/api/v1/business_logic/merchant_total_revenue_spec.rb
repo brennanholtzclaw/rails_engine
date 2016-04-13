@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe it 'GET /merchants/:id/revenue returns total' do
+RSpec.describe 'GET /merchants/:id/revenue returns total' do
   def parsed_response
     JSON.parse(response.body)
   end
@@ -15,13 +15,11 @@ RSpec.describe it 'GET /merchants/:id/revenue returns total' do
     invoice_item3 = create(:invoice_item)
     invoice_item4 = create(:invoice_item)
     transaction1 = create(:transaction, result: "success")
-    transaction2 = create(:transaction, result: "success")
     transaction3 = create(:transaction, result: "success")
     transaction4 = create(:transaction, result: "failed")
     invoice1.invoice_items << invoice_item1
     invoice1.invoice_items << invoice_item2
     invoice1.transactions << transaction1
-    invoice1.transactions << transaction2
     invoice2.invoice_items << invoice_item3
     invoice2.invoice_items << invoice_item4
     invoice2.transactions << transaction3
@@ -31,6 +29,6 @@ RSpec.describe it 'GET /merchants/:id/revenue returns total' do
 
     get "/api/v1/merchants/#{merchant.id}/revenue"
 
-    binding.pry
+    expect(parsed_response).to eq({"revenue"=>"40.0"})
   end
 end
