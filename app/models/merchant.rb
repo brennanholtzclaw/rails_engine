@@ -1,6 +1,8 @@
 class Merchant < ActiveRecord::Base
   has_many :invoices
   has_many :items
+  has_many :transactions, through: :invoices
+  has_many :customers, through: :invoices
 
   def self.total_revenue(id)
     revenue = Merchant.find(id).invoices.joins(:transactions).where("transactions.result = 'success'").joins(:invoice_items).sum("unit_price * quantity")
@@ -14,6 +16,7 @@ class Merchant < ActiveRecord::Base
   def self.favorite_customer(id)
     # Merchant.find(id).invoices.joins(:transactions).where("transactions.result = 'success'").includes(:customer).select("customer.*, COUNT(id) AS count").group("customer.id").order("count desc").first
                                   ####REFACTOR AND OR COME TO UNDERSTAND THIS####
-    Customer.joins(invoices: [:merchant]).where("invoices.merchant_id = ?", id).select("customers.*, COUNT(customers.id) AS count").group("customers.id").order("count desc").first
+    # Customer.joins(invoices: [:merchant]).where("invoices.merchant_id = ?", id).select("customers.*, COUNT(customers.id) AS count").group("customers.id").order("count desc").first
+    Merchant.find(id).customers.joins(:transactions).where(transactions: { result: 'success'}).group(:id).order('transactions.count desc').first
   end
 end
