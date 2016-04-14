@@ -11,10 +11,9 @@ class Item < ActiveRecord::Base
 
   def self.top_number_sold
     joins(invoice_items: :transactions).where(transactions: {result: "success"}).group(:id).order("sum(invoice_items.quantity) desc")
-    # Item.joins(invoice_items: :transactions).where(transactions: {result: "success"}).group(:id).order("sum(invoice_items.quantity) desc")
   end
 
-  def top_revenue
+  def self.top_revenue
     joins(invoice_items: :transactions).where(transactions: {result: "success"}).group(:id).order("sum(invoice_items.quantity * invoice_items.unit_price) desc")
   end
 

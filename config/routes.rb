@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get '/items/find_all', to: 'items#find_all'
       get '/items/random', to: 'items#random'
       get '/items/most_items', to: 'item_sales#index'
+      get '/items/most_revenue', to: 'item_revenues#index'
       resources :items, except: [:new, :edit]
       get '/items/:id/invoice_items', to: 'item_invoice_items#index'
       get '/items/:id/merchant', to: 'item_merchant#show'
