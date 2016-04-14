@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'GET /merchants/:id/favorite_customer returns customer with most transactions' do
+RSpec.describe 'GET /customers/:id/favorite_merchant returns merchant with most transactions' do
   def parsed_response
     JSON.parse(response.body)
   end
 
-  it 'responds with customer most successful transactions' do
-    # GET /api/v1/merchants/:id/favorite_customer returns the customer who has conducted the most total number of successful transactions
+  it 'responds with merchant for whom the customer has most successful transactions' do
+    # GET /api/v1/customers/:id/favorite_merchant returns the merchant who the customer has conducted the most total number of successful transactions with
     merchant = create(:merchant)
     customer1 = create(:customer)
     customer2 = create(:customer)
@@ -33,8 +33,8 @@ RSpec.describe 'GET /merchants/:id/favorite_customer returns customer with most 
     customer1.invoices << invoice1
     customer2.invoices << invoice2
 
-    get "/api/v1/merchants/#{merchant.id}/favorite_customer"
+    get "/api/v1/customers/#{customer1.id}/favorite_merchant"
 
-    expect(parsed_response["id"]).to eq(customer2.id)
+    expect(parsed_response["id"]).to eq(merchant.id)
   end
 end
