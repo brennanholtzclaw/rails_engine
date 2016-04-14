@@ -71,17 +71,6 @@ RSpec.describe "GET /api/v1/customers" do
       "created_at" => format_date(customer2.created_at),
       "updated_at" => format_date(customer2.updated_at)
     })
-
-### HOW TO HANDLE MULTIPLE RESULTS IN FIND METHOD ###
-    # get "/api/v1/customers/find?last_name=#{customer2.last_name}"
-    #
-    # expect(parsed_response).to eq({
-    #   "id"         => customer2.id,
-    #   "first_name" => customer2.first_name,
-    #   "last_name" => customer2.last_name,
-    #   "created_at" => format_date(customer2.created_at),
-    #   "updated_at" => format_date(customer2.updated_at)
-    # })
   end
 
   it "returns all customers by any criteria" do

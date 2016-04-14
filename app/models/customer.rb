@@ -3,9 +3,6 @@ class Customer < ActiveRecord::Base
   has_many :transactions, through: :invoices
   has_many :merchants, through: :invoices
   def self.favorite_merchant(id)
-    # Merchant.find(id).invoices.joins(:transactions).where("transactions.result = 'success'").includes(:customer).select("customer.*, COUNT(id) AS count").group("customer.id").order("count desc").first
-                                  ####REFACTOR AND OR COME TO UNDERSTAND THIS####
-    # Merchant.joins(invoices: [:customer]).where("invoices.customer_id = ?", id).select("merchants.*, COUNT(merchants.id) AS count").group("merchants.id").order("count desc").first
     Customer.find(id).merchants.joins(:transactions).where(transactions: { result: 'success'}).group(:id).order('transactions.count desc').first
   end
 

@@ -56,7 +56,6 @@ RSpec.describe "GET /api/v1/invoices" do
     })
 
     expect(parsed_response).to_not include(invoice2.id)
-    # expect(parsed_response).to_not include(JSON.parse(invoice3.to_json)) #many PIECES are included - RSpec doesn't like it
   end
 
   it "returns just one invoice by any criteria" do
