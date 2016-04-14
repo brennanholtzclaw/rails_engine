@@ -10,4 +10,9 @@ class Merchant < ActiveRecord::Base
   def self.customers_with_pending_invoices(id)
     Merchant.find(id).invoices.includes(:customer).joins(:transactions).where("transactions.result = 'failed'").uniq
   end
+
+  def self.favorite_customer(id)
+                                  ####REFACTOR AND OR COME TO UNDERSTAND THIS####
+    Customer.joins(invoices: [:merchant]).where("invoices.merchant_id = ?", id).select("customers.*, COUNT(customers.id) AS count").group("customers.id").order("count desc").first
+  end
 end

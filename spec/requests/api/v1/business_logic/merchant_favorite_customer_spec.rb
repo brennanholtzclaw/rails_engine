@@ -35,6 +35,6 @@ RSpec.describe 'GET /merchants/:id/favorite_customer returns customer with most 
 
     get "/api/v1/merchants/#{merchant.id}/favorite_customer"
 
-    expect(parsed_response.count).to eq(1)
+    expect(parsed_response["id"]).to eq(customer1.id)
   end
 end
