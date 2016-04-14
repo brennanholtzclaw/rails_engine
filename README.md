@@ -12,6 +12,8 @@ To get started follow the instructions below:
 ```
 git clone git@github.com:brennanholtzclaw/rails_engine.git mirror_rails_engine
 
+cd mirror_rails_engine
+
 bundle
 
 rake db:{drop,create,migrate}
