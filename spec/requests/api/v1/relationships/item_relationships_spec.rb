@@ -30,7 +30,6 @@ RSpec.describe "GET /api/v1/item relationships" do
   end
 
   it "returns associated item merchant" do
-    # GET /api/v1/items/:id/merchant returns the associated merchant
     item = create(:item)
     merchant = create(:merchant)
     merchant.items << item
@@ -38,7 +37,5 @@ RSpec.describe "GET /api/v1/item relationships" do
     get "/api/v1/items/#{item.id}/merchant"
 
     expect(parsed_response).to eq(JSON.parse(merchant.to_json))
-    # expect(parsed_response[0]).to eq(JSON.parse(invoice_item1.to_json))
-    # expect(parsed_response[1]["id"]).to eq(invoice_item2.id)
   end
 end
